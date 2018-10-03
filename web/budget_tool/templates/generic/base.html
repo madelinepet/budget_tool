@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{% static "css/../../static/css/normalize.css" %}">
   <link rel="stylesheet" href="{% static "css/../../static/css/skeleton.css" %}">
   <link rel="stylesheet" href="{% static "css/../../static/css/style.css" %}">
-  <title>Django Demo</title>
+  <title>Budget Tool</title>
 </head>
 <body>
   <header>
@@ -18,7 +18,9 @@
       <ul>
         <li><a href="{% url "home" %}">Home</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url "budget_view" %}">Budget</a></li>
+        <li><a href="{% url "budget_view" %}">Budget List</a></li>
+        <li><a href="{% url "budget_create" %}">Create New Budget</a></li>
+        <li><a href="{% url "transaction_create" %}"> Create New Transaction</a></li>
         {% if user.is_superuser %}
         <li><a href="{% url "admin:index" %}">Admin</a></li>
         {% endif %}

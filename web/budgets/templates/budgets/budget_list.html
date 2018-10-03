@@ -1,14 +1,11 @@
-
 {% extends "generic/base.html" %}
 
 {% block content %}
-<div class="budget_list">
-{% for budget in budget %}
-<div class="status_{{ budget }}">
+{% for budget in budgets %}
   <h2>{{ budget }}</h2>
-  {% for transaction in transaction %}
+  {% for transaction in transactions %}
     {% if transaction.budget == budget %}
-    <p><a href="{% url "transaction_detail" id=transaction.id %}">{{ transaction.title }}</a></p>
+    <p><a href="{% url "transaction_detail" id=transaction.id %}">{{ transaction.description }}</a></p>
     {% endif %}
   {% endfor %}
 </div>
