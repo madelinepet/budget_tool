@@ -5,7 +5,7 @@ from .models import Budget, Transaction
 class BudgetForm(ModelForm):
     class Meta:
         model = Budget
-        fields = ['user', 'name', 'total_budget']
+        fields = ['name', 'total_budget']
 
 
 class TransactionForm(ModelForm):

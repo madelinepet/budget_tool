@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import home_view
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('budgets/', include('budgets.urls'))
+    path('budgets/', include('budgets.urls')),
+    path('api/v1/', include('budget_api.urls')),
 ]

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from distutils.util import strtobool
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+# Changed this to be evaluated as the bool of the str coming in to avoid
+# truthiness of str giving back stack in non-debug mode
+DEBUG = strtobool(os.environ.get('DEBUG', 'False'))
+# DEBUG = 'True' == os.environ.get('DEBUG', 'False'))
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split()
 
@@ -40,6 +44,8 @@ INSTALLED_APPS = [
     'django_registration',
     'budget_tool',
     'budgets',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +145,11 @@ if DEBUG:
 # else:
     # Handle all of the configs for a real email SMTPBackend
 
+# Django REST framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
