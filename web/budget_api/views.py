@@ -5,7 +5,7 @@ from .serializers import UserSerializer, User
 
 class RegisterApiView(generics.CreateAPIView):
     permission_classes = ''
-    authentication_classes = (TokenAuthentication)
+    authentication_classes = (TokenAuthentication,)
     serializer_class = UserSerializer
 
 

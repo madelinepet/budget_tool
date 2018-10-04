@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'budget_tool',
     'budgets',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
